@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xsj284.gradblog.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="xsj284.gradblog.domain.User">
+        <!--@mbg.generated-->
+        <!--@Table tb_user-->
+        <id column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        `uid`,
+        `account`,
+        `password`,
+        create_time,
+        update_time,
+        is_deleted
+    </sql>
+
+    <select id="getLoginUserByAccount" resultType="xsj284.gradblog.model.bo.LoginUserBO">
+        select `uid`, `account`, `password`, `is_deleted`
+        from tb_user
+        where `account` = #{account, jdbcType=VARCHAR};
+    </select>
+
+    <insert id="insertUserByRegisterInfo">
+        insert into tb_user (`account`, `password`)
+        values (#{param1, jdbcType=VARCHAR}, #{param2, jdbcType=VARCHAR});
+    </insert>
+</mapper>

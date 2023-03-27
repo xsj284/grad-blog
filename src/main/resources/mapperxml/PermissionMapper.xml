@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xsj284.gradblog.mapper.PermissionMapper">
+    <resultMap id="BaseResultMap" type="xsj284.gradblog.domain.Permission">
+        <!--@mbg.generated-->
+        <!--@Table tb_permission-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        `value`
+    </sql>
+
+    <select id="getPermissionListByUserId" resultType="String">
+        select `value`
+        from tb_permission
+        join tb_user_permission tup on tb_permission.id = tup.permission_id
+        and tup.user_id = #{userId,jdbcType=INTEGER};
+    </select>
+</mapper>

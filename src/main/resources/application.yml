@@ -1,0 +1,65 @@
+# url prefix
+api:
+    prefix:
+        # add / at the beginning, not at the end
+        v1: /api/v1
+
+# server
+server:
+    port: 8888
+
+# spring
+spring:
+    # datasource
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/grad_proj_blog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: ENC(HIBxTu/rKNfbfvyuuuihAWvtfa/VN/qK)
+        # druid
+        druid:
+            min-idle: 10
+    data:
+        redis:
+            database: 1
+            host: localhost
+            port: 6379
+            password:
+            timeout: 30
+            lettuce:
+                pool:
+                    max-idle: 10
+                    min-idle: 1
+                    max-active: 200
+                    max-wait: -1
+
+# mybatis plus
+mybatis-plus:
+    mapper-locations: classpath:/mapperxml/*.xml
+
+# spring doc
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+        path: /swagger-ui
+
+# sa token
+sa-token:
+    token-name: blog_token
+    # timout(s)
+    timeout: 604800
+    activity-timeout: -1
+    # concurrent logins
+    is-concurrent: true
+    # share token
+    is-share: true
+    token-style: uuid
+    is-log: true
+
+# jasypt
+jasypt:
+    encryptor:
+        iv-generator-classname: org.jasypt.iv.NoIvGenerator
+        algorithm: PBEWithMD5AndDES
